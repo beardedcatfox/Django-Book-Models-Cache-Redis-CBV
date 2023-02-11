@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'bookstore/style.css' %}" type="text/css"/>
+    <title>Book list</title>
+</head>
+<body>
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Books</th>
+  </tr>
+  {% for publisher in page_obj %}{% for book in publisher.book_set.all %}
+  <tr>
+    <td><a href="http://127.0.0.1:8000/bookstore/publisher/{{ publisher.id }}">{{ publisher.id }}</a></td>
+    <td><a href="http://127.0.0.1:8000/bookstore/publisher/{{ publisher.id }}">{{ publisher.name }}</a></td>
+    <td><a href="http://127.0.0.1:8000/bookstore/book/{{ book.id }}">{{ book.name }}</a></td>
+  </tr>
+  {% endfor %}{% endfor %}
+</table>
+
+<div class="pagination">
+  {% if page_obj.has_previous %}
+    <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+  {% endif %}
+  <span class="page-number">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+  {% if page_obj.has_next %}
+    <a href="?page={{ page_obj.next_page_number }}">next</a>
+  {% endif %}
+</div>
+</body>
+</html>
