@@ -1,0 +1,57 @@
+body{
+    background-color: rgb(193, 202, 211);
+    max-width: 860px;
+    margin: 0 auto;
+    font-family: 'Montserrat', sans-serif;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+    font-size: 25px;
+}
+
+.blocks{
+    margin-top: 100px;
+    display: flex;
+}
+
+
+.up{
+    padding-top: 100px;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.second{
+    margin-top: 25px;
+}
+
+.down{
+    padding-top: 25px;
+    justify-content: space-between;
+}
+
+.fourth{
+    margin-top: 25px;
+}
+
+h1{
+    font-size: 45px;
+}
+
+p{
+    font-size: 20px;
+}
+
+h2{
+    font-size: 32px;
+}
+
+th{
+    font-size: 40px;
+}
+
+td{
+    font-size: 30px;
+}
