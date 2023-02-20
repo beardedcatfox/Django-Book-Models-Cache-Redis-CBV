@@ -1,5 +1,9 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.paginator import Paginator
 from django.shortcuts import render
+from django.urls import reverse, reverse_lazy
+from django.views.generic import DetailView, ListView
+from django.views.generic.edit import CreateView, DeleteView, UpdateView
 
 from .models import Author, Book, Publisher, Store
 
@@ -58,3 +62,35 @@ def store_detail(request, store_id):
 def publisher_detail(request, publisher_id):
     publisher = Publisher.objects.prefetch_related('book_set').get(pk=publisher_id)
     return render(request, 'bookstore/publisher_detail.html', {'publisher': publisher})
+
+
+class AuthorListView(ListView):
+    model = Author
+    paginate_by = 10
+
+
+class AuthorDetailView(DetailView):
+    model = Author
+
+
+class AuthorCreateView(LoginRequiredMixin, CreateView):
+    model = Author
+    fields = ['name', 'age']
+    success_url = '/authors/'
+
+    def get_success_url(self):
+        return reverse('author_detail', kwargs={'pk': self.object.pk})
+
+
+class AuthorUpdateView(LoginRequiredMixin, UpdateView):
+    model = Author
+    fields = ['name', 'age']
+    success_url = '/authors/'
+
+    def get_success_url(self):
+        return reverse('author_detail', kwargs={'pk': self.object.pk})
+
+
+class AuthorDeleteView(LoginRequiredMixin, DeleteView):
+    model = Author
+    success_url = reverse_lazy('author_list')
