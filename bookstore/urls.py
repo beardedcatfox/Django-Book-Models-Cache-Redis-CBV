@@ -1,7 +1,7 @@
 from django.urls import path
 
 from .views import AuthorCreateView, AuthorDeleteView, AuthorDetailView, AuthorListView, AuthorUpdateView, \
-    author_detail, author_list, book_detail, book_list, index, publisher_detail, publisher_list, \
+    author_detail, author_list, book_detail, book_list, book_list_cache, index, publisher_detail, publisher_list, \
     store_detail, store_list
 
 urlpatterns = [
@@ -20,4 +20,6 @@ urlpatterns = [
     path('authors/create/', AuthorCreateView.as_view(), name='author_create'),
     path('authors/<int:pk>/update/', AuthorUpdateView.as_view(), name='author_update'),
     path('authors/<int:pk>/delete/', AuthorDeleteView.as_view(), name='author_delete'),
+
+    path('booklist_cache', book_list_cache, name='book_list_cache'),
 ]

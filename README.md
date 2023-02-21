@@ -35,3 +35,10 @@
 # [Author CreateView](http://127.0.0.1:8000/bookstore/authors/create/)
 # [Author UpdateView authors/<int:pk>/update/](http://127.0.0.1:8000/bookstore/authors/155/update/)
 # [Author DeleteView authors/<int:pk>/delete/](http://127.0.0.1:8000/bookstore/authors/155/delete/)
+
+# HW 17 
+
+
+## Cache was added to BookList page because it have biggest number of relations. Pagination = 500.
+## Fixtures, management command, etc.  at top of readme
+# [Booklist page with cache](http://127.0.0.1:8000/bookstore/booklist_cache)
