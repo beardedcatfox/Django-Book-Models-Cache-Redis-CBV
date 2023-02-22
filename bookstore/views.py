@@ -2,6 +2,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.paginator import Paginator
 from django.shortcuts import render
 from django.urls import reverse, reverse_lazy
+from django.views.decorators.cache import cache_page
 from django.views.generic import DetailView, ListView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 
@@ -94,3 +95,12 @@ class AuthorUpdateView(LoginRequiredMixin, UpdateView):
 class AuthorDeleteView(LoginRequiredMixin, DeleteView):
     model = Author
     success_url = reverse_lazy('author_list')
+
+
+@cache_page(60 * 5)
+def book_list_cache(request):
+    books = Book.objects.prefetch_related('authors', 'publisher').all()
+    paginator = Paginator(books, 500)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'bookstore/book_list.html', {'page_obj': page_obj})
