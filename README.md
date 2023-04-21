@@ -1,4 +1,14 @@
-# Django-books-models
+# Django Book Models
+Add Django debug toolbar.
+Use models from the Django documentation in the application.
+https://docs.djangoproject.com/en/4.0/topics/db/aggregation/
+Add models to the admin panel. Use more functionality (inline, filters, search, output and grouping of fields in the form, filter_vertical, date_hierarchy ...)
+
+Create several templates, views, and urls to display data on models. (Only output data from the database, without forms)
+
+In views and templates minimize the number of database queries. (Prefetches, selects, annotations, aggregations)
+
+Add cache via Redis
 
 ```
     python manage.py migrate
@@ -39,6 +49,6 @@
 # HW 17 
 
 
-## Cache was added to BookList page because it have biggest number of relations. Pagination = 500.
+## Cache was added to BookList page because it have the biggest number of relations. Pagination = 500.
 ## Fixtures, management command, etc.  at top of readme
 # [Booklist page with cache](http://127.0.0.1:8000/bookstore/booklist_cache)
